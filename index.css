@@ -1,0 +1,226 @@
+
+:root {
+    --primary-color: #3498db;
+    --primary-hover-color: #2980b9;
+    --correct-color: #2ecc71;
+    --incorrect-color: #e74c3c;
+    --neutral-bg: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --light-text-color: #ffffff;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--neutral-bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+.app-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.quiz-container, .results-container {
+    background-color: var(--container-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    /* max-width is now on main-wrapper */
+    padding: 30px;
+    overflow: hidden;
+}
+
+.quiz-header {
+    margin-bottom: 20px;
+}
+
+#progress-container {
+    margin-bottom: 20px;
+}
+
+#progress-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#progress-bar-full {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.4s ease-in-out;
+}
+
+.question-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: var(--container-bg);
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-btn:hover:not(.answered) {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.nav-btn.current {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    transform: scale(1.1);
+    border-color: var(--primary-hover-color);
+}
+
+.nav-btn.answered {
+    background-color: var(--correct-color);
+    border-color: var(--correct-color);
+    color: var(--light-text-color);
+}
+
+#question {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+
+.btn.correct {
+    background-color: var(--correct-color);
+}
+
+.btn.incorrect {
+    background-color: var(--incorrect-color);
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+}
+
+#results-text {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#restart-btn {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#restart-btn:hover {
+    background-color: var(--primary-hover-color);
+}
+
+#show-results-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#show-results-btn:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+@media (min-width: 500px) {
+    .btn-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
